@@ -407,7 +407,20 @@ summary {
 
 suv_sample &lt;- compact_suv %&gt;% 
   filter(class == &quot;suv&quot;) %&gt;% 
-  pull(cty)</code></pre>
+  pull(cty)
+
+t.test(x = compact_sample, y = suv_sample)</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  compact_sample and suv_sample
+## t = 11.393, df = 79.558, p-value &lt; 2.2e-16
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  5.469914 7.785405
+## sample estimates:
+## mean of x mean of y 
+##  20.12766  13.50000</code></pre>
 </div>
 </div>
 

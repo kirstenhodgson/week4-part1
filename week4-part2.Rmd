@@ -55,5 +55,7 @@ compact_sample <- compact_suv %>%
 suv_sample <- compact_suv %>% 
   filter(class == "suv") %>% 
   pull(cty)
+
+t.test(x = compact_sample, y = suv_sample)
 ```
 
