@@ -1,0 +1,59 @@
+---
+title: "Week 4 Part 2"
+author: "Kirsten Hodgson"
+date: "11/2/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+```{r}
+compact_suv <- mpg %>% 
+  filter(class %in% c("compact","suv"))
+```
+
+## Exploratory data visualization
+
+Exploratory histograms:
+```{r}
+ggplot(data = compact_suv, aes(x = cty)) + 
+  geom_histogram(bins = 15) + 
+  facet_wrap(~class)
+```
+
+Quantile-quantile plot:
+The closer the plot is to linear the closer the sample observations are to being normally distributed.
+```{r}
+ggplot(data = compact_suv, aes(sample = cty)) +
+  geom_qq() + 
+  facet_wrap(~class)
+```
+
+## Summary statistics
+
+```{r}
+car_stats <- compact_suv %>% 
+  group_by(class) %>% 
+  summarize(mean_city = mean(cty),
+            sd_city = sd(cty),
+            n = n())
+
+car_stats
+```
+
+### 2-sample t-test
+
+Create vectors containing observations for each sample (city gas mileage)
+```{r}
+compact_sample <- compact_suv %>% 
+  filter(class == "compact") %>% 
+  pull(cty)
+
+suv_sample <- compact_suv %>% 
+  filter(class == "suv") %>% 
+  pull(cty)
+```
+
