@@ -1,0 +1,10 @@
+---
+title: 'Week 4 Part 1: CIs and t-tests'
+author: "Kirsten Hodgson"
+date: "11/2/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
